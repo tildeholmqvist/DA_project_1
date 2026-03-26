@@ -93,3 +93,68 @@ DA_project_1/
 ## Acknowledgements
 - Code Institute LMS — course material and project template
 - Marcel (mentor) — guidance throughout the project
+
+
+## Summary of Work
+
+> **Note:** GitHub Copilot was asked to summarise the work performed across the 
+>project notebooks. The summary below is based on Copilot's output, 
+>reviewed and adapted to reflect the actual findings of this project.
+
+### 01 - Load and Clean Data (load_and_clean_data.ipynb)
+
+- Loaded raw transactions from `data/source/online_retail.csv` into a DataFrame.
+- Inspected missing values and dropped rows with missing product `Description`.
+- Removed exact duplicate rows.
+- Filtered out invalid transactions: removed rows with `UnitPrice` <= 0 and `Quantity` <= 0 (returns/cancellations).
+- Created a `TotalPrice` column (`UnitPrice * Quantity`).
+- Converted `InvoiceDate` to datetime and extracted `Month` and `Year` for time-based analysis.
+- Normalised identifier columns (`InvoiceNo`, `StockCode`, `CustomerID`) to string type and removed cancellation invoices where `InvoiceNo` starts with `'C'`.
+- Saved cleaned output to `data/processed/online_retail_cleaned.csv` for downstream use.
+
+Notes / considerations:
+- Returns and cancellations were removed from the main cleaned dataset — a separate export or flag is recommended if you want to analyse refunds.
+- Whitespace-only descriptions or non-standard encodings may not have been fully handled; consider trimming and normalising text.
+- There is no automated cleaning report saved (only printed summaries) — adding a small `cleaning_report.csv` helps reproducibility.
+
+### 02 - Analysis and Visualizations (analysis_and_visualizations.ipynb)
+
+- Loaded the cleaned dataset `data/processed/online_retail_cleaned.csv`.
+- Created visual answers to the business questions:
+  - Top 10 best-selling products by quantity (bar chart).
+  - Monthly revenue and number of orders (time series).
+  - Explored the relationship between product price and quantity sold (scatter / interactive Plotly chart).
+- Improved the scatter visualization to reduce overplotting and added an interactive Plotly version (opens in browser or writes an HTML fallback).
+
+Key findings observed in the analysis notebook:
+- A small number of products account for a large share of quantity sold (Pareto-like behaviour among top sellers).
+- Revenue shows a strong seasonal pattern with a peak in November 2011 and elevated sales toward the end of the year.
+- The relationship between average product price and total quantity sold is not strongly linear; lower-priced items often sell more but there are many exceptions (use segmentation to investigate further).
+
+___
+
+## Project Maintenance and Cleanup
+
+> **Note:** Claude (Anthropic) was asked to review the completed project and suggest maintenance improvements. The changes below were implemented based on Claude's recommendations.
+
+### requirements.txt
+Removed unused packages and their exclusive transitive dependencies to reduce the dependency footprint. The following top-level packages were not used in any project notebook and were removed:
+
+| Package removed | Reason |
+|-----------------|--------|
+| `ydata-profiling` | Automated EDA tool — not used in any notebook |
+| `streamlit` | Web app framework — not used |
+| `xgboost` | ML algorithm — not used |
+| `yellowbrick` | ML visualisation — not used |
+| `wordcloud` | Word cloud plots — not used |
+| `imbalanced-learn` | Imbalanced dataset ML — not used |
+| `GitPython` | Git operations in Python — not used in notebooks |
+| `openpyxl` | Excel file support — only CSV files are used |
+
+Their exclusive transitive dependencies were also removed: `altair`, `pydeck`, `blinker`, `protobuf`, `htmlmin`, `ImageHash`, `phik`, `visions`, `multimethod`, `dacite`, `numba`, `llvmlite`, `networkx`, `narwhals`, `cachetools`, `PyWavelets`, `xarray`, `gitdb`, `smmap`, `et_xmlfile`.
+
+### 02_analysis_and_visualizations.ipynb
+Added `dtype={'InvoiceNo': str}` to the `pd.read_csv()` call when loading the cleaned dataset. This suppresses a `DtypeWarning` caused by `InvoiceNo` being saved as a string in the cleaning notebook but parsed as mixed types on reload.
+
+### README.md
+Removed the `output/` folder from the project structure, as no plots or reports are written to that directory in the project notebooks.
