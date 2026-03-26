@@ -90,6 +90,7 @@ DA_project_1/
   (Log, Reciprocal, Power, Box-Cox and Yeo-Johnson) — 
   Yeo-Johnson produced the best fit (R²=0.989) and is more 
   generalizable to datasets with zero or negative values
+
 #### Transformer Comparison
 All five transformers were tested on a sample of 5,000 UnitPrice rows. 
 The results below show why Yeo-Johnson was selected:
