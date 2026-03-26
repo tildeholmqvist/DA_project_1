@@ -32,6 +32,7 @@ to support data-driven business decisions.
 ## Project Structure
 ```
 DA_project_1/
+├── assets/          # Plot images for README
 ├── data/
 │   ├── source/          # Raw dataset files
 │   └── processed/       # Cleaned dataset
@@ -57,6 +58,20 @@ DA_project_1/
 | Lower-priced products sell in higher quantities | Supported |
 | UnitPrice is right-skewed and normalisable | Confirmed — Yeo-Johnson R²=0.989 |
 
+### BR1 — Top 10 Best-Selling Products
+![Top 10 Best-Selling Products](assets/BR1_barplot.png)
+
+### BR2 — Sales Trends Over Time
+![Monthly Revenue](assets/BR2_lineplot.png)
+![Monthly Orders](assets/BR2_barplot.png)
+
+### BR3 — Price vs Quantity Relationship
+![Price vs Quantity](assets/BR3_scatterplot.png)
+![Price vs Quantity (improved)](assets/BR3_AI_scatterplot.png)
+
+### BR4 — Price Distribution and Normalisation
+![Yeo-Johnson Transformation](assets/BR4_YeoJohnson.png)
+
 ## Technologies Used
 - **Python 3.12**
 - **Pandas** — data manipulation
@@ -75,6 +90,16 @@ DA_project_1/
   (Log, Reciprocal, Power, Box-Cox and Yeo-Johnson) — 
   Yeo-Johnson produced the best fit (R²=0.989) and is more 
   generalizable to datasets with zero or negative values
+#### Transformer Comparison
+All five transformers were tested on a sample of 5,000 UnitPrice rows. 
+The results below show why Yeo-Johnson was selected:
+
+![Log Transformer](assets/BR4_LogTransformer.png)
+![Reciprocal Transformer](assets/BR4_ReciprocalTransformer.png)
+![Power Transformer](assets/BR4_PowerTransformer.png)
+![Box-Cox Transformer](assets/BR4_BoxCoxTransformer.png)
+![Yeo-Johnson Transformer](assets/BR4_YeoJohnson.png)
+
 - All visualisations were built using Plotly for interactivity
 
 ## Challenges
