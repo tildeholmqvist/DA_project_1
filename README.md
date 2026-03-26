@@ -11,6 +11,12 @@ to support data-driven business decisions.
 - Marketing teams seeking to optimise campaigns
 - Product managers wanting to improve product strategy
 
+## Dataset
+- **Source:** [Online Retail Transactions Dataset](https://www.kaggle.com/datasets/abhishekrp1517/online-retail-transactions-dataset) (Kaggle)
+- **Records:** 524,878 transactions after cleaning
+- **Period:** December 2010 – December 2011
+- **Columns:** InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country
+
 ## Business Requirements
 1. Which products are sold the most by quantity?
 2. How have sales developed month by month over the years?
@@ -21,13 +27,7 @@ to support data-driven business decisions.
 1. A small number of products will account for the majority of total sales (Pareto principle)
 2. Sales will peak in November-December due to Christmas shopping
 3. Products with a lower unit price will have a higher quantity sold
-4. UnitPrice will be right-skewed and can be normalised with Box-Cox transformation
-
-## Dataset
-- **Source:** [Online Retail Transactions Dataset](https://www.kaggle.com/datasets/abhishekrp1517/online-retail-transactions-dataset) (Kaggle)
-- **Records:** 524,878 transactions after cleaning
-- **Period:** December 2010 – December 2011
-- **Columns:** InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country
+4. UnitPrice will be right-skewed and can be normalised with Yeo-Johnson transformation
 
 ## Project Structure
 ```
@@ -55,14 +55,14 @@ DA_project_1/
 | A small number of products drive the majority of sales (Pareto) | Partially supported |
 | Sales peak in November-December due to Christmas shopping | Supported |
 | Lower-priced products sell in higher quantities | Supported |
-| UnitPrice is right-skewed and normalisable with Box-Cox | Confirmed |
+| UnitPrice is right-skewed and normalisable | Confirmed — Yeo-Johnson R²=0.989 |
 
 ## Technologies Used
 - **Python 3.12**
 - **Pandas** — data manipulation
 - **Matplotlib & Seaborn** — data visualisation
 - **Plotly** — interactive visualisations
-- **Feature Engine** — Box-Cox transformation
+- **Feature Engine** — Yeo-Johnson transformation
 - **Scikit-learn** — pipeline
 - **Pingouin** — statistical analysis
 - **Jupyter Notebook** — development environment
@@ -71,29 +71,17 @@ DA_project_1/
 ## Design Decisions
 - Scatter plot was chosen over box plot for BR3 as it better shows 
   the relationship between two continuous variables
-- Box-Cox was preferred over log transformation as it optimises 
-  the lambda parameter automatically
+- Yeo-Johnson was chosen after testing multiple transformers 
+  (Log, Reciprocal, Power, Box-Cox and Yeo-Johnson) — 
+  Yeo-Johnson produced the best fit (R²=0.989) and is more 
+  generalizable to datasets with zero or negative values
+- All visualisations were built using Plotly for interactivity
 
 ## Challenges
-- Interactive Plotly plots require nbformat>=4.2.0 which was not 
-  available in the environment — resolved with browser fallback
 - GitHub Copilot occasionally suggested overly complex solutions 
   that needed to be simplified for the scope of this project
-
-## Credits
-
-### Dataset
-- [Online Retail Transactions Dataset](https://www.kaggle.com/datasets/abhishekrp1517/online-retail-transactions-dataset) by Abhishek R P on Kaggle
-
-### AI Assistance
-- GitHub Copilot — used for code review, suggestions and summarisation
-- The specific contributions of AI tools are documented in each notebook
-- Claude (Anthropic) — used for guidance, problem-solving, and code review during development; also used post-completion for project maintenance (see summary notebook for details)
-
-## Acknowledgements
-- Code Institute LMS — course material and project template
-- Marcel (mentor) — guidance throughout the project
-
+- Comparing multiple transformers required careful evaluation 
+  to identify the best fit for the UnitPrice distribution
 
 ## Summary of Work
 
@@ -124,14 +112,12 @@ Notes / considerations:
   - Top 10 best-selling products by quantity (bar chart).
   - Monthly revenue and number of orders (time series).
   - Explored the relationship between product price and quantity sold (scatter / interactive Plotly chart).
-- Improved the scatter visualization to reduce overplotting and added an interactive Plotly version (opens in browser or writes an HTML fallback).
+- Created interactive Plotly visualisations for all business requirements, with an improved scatter plot featuring colour scaling and hover tooltips.
 
 Key findings observed in the analysis notebook:
 - A small number of products account for a large share of quantity sold (Pareto-like behaviour among top sellers).
 - Revenue shows a strong seasonal pattern with a peak in November 2011 and elevated sales toward the end of the year.
 - The relationship between average product price and total quantity sold is not strongly linear; lower-priced items often sell more but there are many exceptions (use segmentation to investigate further).
-
-___
 
 ## Project Maintenance and Cleanup
 
@@ -158,3 +144,17 @@ Added `dtype={'InvoiceNo': str}` to the `pd.read_csv()` call when loading the cl
 
 ### README.md
 Removed the `output/` folder from the project structure, as no plots or reports are written to that directory in the project notebooks.
+
+## Credits
+
+### Dataset
+- [Online Retail Transactions Dataset](https://www.kaggle.com/datasets/abhishekrp1517/online-retail-transactions-dataset) by Abhishek R P on Kaggle
+
+### AI Assistance
+- GitHub Copilot — used for code review, suggestions and summarisation
+- The specific contributions of AI tools are documented in each notebook
+- Claude (Anthropic) — used for guidance, problem-solving, and code review during development; also used post-completion for project maintenance (see summary notebook for details)
+
+## Acknowledgements
+- Code Institute LMS — course material and project template
+- Marcel (mentor) — guidance throughout the project
