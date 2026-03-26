@@ -93,7 +93,7 @@ DA_project_1/
 ### AI Assistance
 - GitHub Copilot — used for code review, suggestions and summarisation
 - The specific contributions of AI tools are documented in each notebook
-- Claude (Anthropic) — used for guidance and problem-solving during development
+- Claude (Anthropic) — used for guidance, problem-solving, and code review during development; also used post-completion for project maintenance (see summary notebook for details)
 
 ## Acknowledgements
 - Code Institute LMS — course material and project template
