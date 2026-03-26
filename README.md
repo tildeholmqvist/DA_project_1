@@ -85,11 +85,6 @@ DA_project_1/
 ### Dataset
 - [Online Retail Transactions Dataset](https://www.kaggle.com/datasets/abhishekrp1517/online-retail-transactions-dataset) by Abhishek R P on Kaggle
 
-### Tools & Libraries
-- [Feature Engine](https://feature-engine.trainindata.com/) — transformation library
-- [Pingouin](https://pingouin-stats.org/) — statistical analysis library
-- [Plotly](https://plotly.com/) — interactive visualisation library
-
 ### AI Assistance
 - GitHub Copilot — used for code review, suggestions and summarisation
 - The specific contributions of AI tools are documented in each notebook
