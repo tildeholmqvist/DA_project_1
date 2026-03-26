@@ -39,7 +39,6 @@ DA_project_1/
 │   ├── 01_load_and_clean_data.ipynb
 │   ├── 02_analysis_and_visualizations.ipynb
 │   └── 03_summary.ipynb
-├── output/              # Generated plots and reports
 ├── requirements.txt
 └── README.md
 ```
@@ -68,6 +67,18 @@ DA_project_1/
 - **Pingouin** — statistical analysis
 - **Jupyter Notebook** — development environment
 - **GitHub** — version control
+
+## Design Decisions
+- Scatter plot was chosen over box plot for BR3 as it better shows 
+  the relationship between two continuous variables
+- Box-Cox was preferred over log transformation as it optimises 
+  the lambda parameter automatically
+
+## Challenges
+- Interactive Plotly plots require nbformat>=4.2.0 which was not 
+  available in the environment — resolved with browser fallback
+- GitHub Copilot occasionally suggested overly complex solutions 
+  that needed to be simplified for the scope of this project
 
 ## Credits
 
