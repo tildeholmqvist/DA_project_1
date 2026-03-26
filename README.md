@@ -138,12 +138,14 @@ Notes / considerations:
   - Top 10 best-selling products by quantity (bar chart).
   - Monthly revenue and number of orders (time series).
   - Explored the relationship between product price and quantity sold (scatter / interactive Plotly chart).
+  - Analysed UnitPrice distribution and tested five transformers (Log, Reciprocal, Power, Box-Cox and Yeo-Johnson) — Yeo-Johnson selected as best fit (R²=0.989).
 - Created interactive Plotly visualisations for all business requirements, with an improved scatter plot featuring colour scaling and hover tooltips.
 
 Key findings observed in the analysis notebook:
 - A small number of products account for a large share of quantity sold (Pareto-like behaviour among top sellers).
 - Revenue shows a strong seasonal pattern with a peak in November 2011 and elevated sales toward the end of the year.
 - The relationship between average product price and total quantity sold is not strongly linear; lower-priced items often sell more but there are many exceptions (use segmentation to investigate further).
+- UnitPrice is heavily right-skewed (R²=0.012) — Yeo-Johnson transformation successfully normalised the distribution (R²=0.989), outperforming all other tested transformers.
 
 ## Project Maintenance and Cleanup
 
