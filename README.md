@@ -77,17 +77,28 @@ DA_project_1/
 
 ### BR1 — Top 10 Best-Selling Products
 ![Top 10 Best-Selling Products](assets/BR1_barplot.png)
+In my opinion, a few hero products dominate sales volume, with home 
+décor and novelty items making up the core category. The Pareto 
+hypothesis is partially supported but not verified quantitatively.
 
 ### BR2 — Sales Trends Over Time
 ![Monthly Revenue](assets/BR2_lineplot.png)
 ![Monthly Orders](assets/BR2_barplot.png)
+In my opinion, both charts clearly show a seasonal peak in November 
+2011, supporting the Christmas shopping hypothesis. The December drop 
+is likely due to incomplete data.
 
 ### BR3 — Price vs Quantity Relationship
 ![Price vs Quantity](assets/BR3_scatterplot.png)
 ![Price vs Quantity (improved)](assets/BR3_AI_scatterplot.png)
+In my opinion, the charts confirm that lower-priced products sell in 
+higher quantities, with virtually all high-volume products priced under £5.
 
 ### BR4 — Price Distribution and Normalisation
 ![Yeo-Johnson Transformation](assets/BR4_YeoJohnson.png)
+In my opinion, the Yeo-Johnson transformation successfully normalised 
+the heavily right-skewed UnitPrice distribution, improving R² from 
+0.012 to 0.989.
 
 ## Technologies Used
 - **Python 3.12**
