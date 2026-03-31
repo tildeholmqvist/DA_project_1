@@ -6,6 +6,23 @@ covering the period 2010-2011. The goal is to uncover insights about
 customer behaviour, product popularity, sales trends, and pricing patterns 
 to support data-driven business decisions.
 
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Target Audience](#target-audience)
+- [Dataset](#dataset)
+- [Business Requirements](#business-requirements)
+- [Project Hypothesis](#project-hypothesis)
+- [Project Structure](#project-structure)
+- [How to Run](#how-to-run)
+- [Hypothesis Validation](#hypothesis-validation)
+- [Technologies Used](#technologies-used)
+- [Design Decisions](#design-decisions)
+- [Challenges](#challenges)
+- [Summary of Work](#summary-of-work)
+- [Project Maintenance and Cleanup](#project-maintenance-and-cleanup)
+- [Credits](#credits)
+- [Acknowledgements](#acknowledgements)
+
 ## Target Audience
 - E-commerce managers looking to understand customer behaviour
 - Marketing teams seeking to optimise campaigns
